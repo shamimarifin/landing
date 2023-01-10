@@ -49,6 +49,48 @@ function lava_theme_func(){
 }
 
 
+// Register Sidebar
+
+
+add_action('widgets_init', 'create_sidebar');
+
+function create_sidebar(){
+
+    register_sidebar(array(
+        'name'          =>  __('Footer first area' , 'lava'),
+        'id'            =>  'footer-first',
+        'description'   => __('You can add footer first', 'lava'),
+        'before_widget' =>  '<div class="contact-form">',
+        'after_widget'  =>  '</div>',
+    ));
+
+    register_sidebar(array(
+        'name'      =>  __('Footer second area' , 'lava'),
+        'id'        =>  'footer-second',
+        'description' => __('You can add second first', 'lava'),
+    ));
+
+
+    
+    register_sidebar(array(
+        'name'      =>  __('Footer last area' , 'lava'),
+        'id'        =>  'footer-last',
+        'description' => __('You can add last area', 'lava'),
+    ));
+
+
+
+    
+
+
+
+}
+
+
+
+
+
+
 
 // ************** Theme Function Style Add ***********
 
