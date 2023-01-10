@@ -176,3 +176,70 @@ if(file_exists(dirname(__FILE__).'/metabox/init.php')){
 if(file_exists(dirname(__FILE__).'/metabox/config.php')){
     require_once(dirname(__FILE__).'/metabox/config.php');
 }
+
+
+
+// Theme Plugin Activation
+
+
+
+if(file_exists(dirname(__FILE__).'/lib/required_plugins.php')){
+    require_once(dirname(__FILE__).'/lib/required_plugins.php');
+}
+
+
+
+
+// VS Composer WP bikery Intergration
+
+add_action( 'vc_before_init', 'your_prefix_vcSetAsTheme' );
+function your_prefix_vcSetAsTheme() {
+  vc_set_as_theme();
+}
+
+
+
+// Add Widget WP bikery
+
+
+add_action('vc_before_init', 'create_widgets');
+
+function create_widgets(){
+
+    vc_map(
+        array(
+            'name'  =>  'Banner',
+            'base'  =>  'home',
+            'icon'  =>  get_template_directory_uri().'/lib/icon/banner-icon.png',
+            "category" => __( "Content", "lava"),
+            'params' => array(
+                array(
+                    'heading'   =>  __('Banner Title', 'lava'),
+                    'type'      =>  'textfield',
+                    'param_name'=>  'title',     
+                ),
+                array(
+                    "heading" => __( "Banner Subtile", "lava" ),
+                    'type'          =>  'textarea_html',
+                    'param_name'    =>  'content',
+                ),
+
+            ),
+            
+        ),
+        
+        
+    );
+
+
+    vc_map(array(
+        'name'  =>  'About',
+        'base'  =>  'about',
+        'icon'  =>  get_template_directory_uri().'/lib/icon/about.svg',
+        'catagory'  =>  __('Content', 'lava'),
+       
+    ),);
+
+
+
+};
